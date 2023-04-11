@@ -8,11 +8,11 @@ const loginSchema = z.object({
     password: z.string()
 })
 
-// const registerSchema = z.object({
-//     username: z.string(),
-//     password: z.string(),
-//     email: z.string()
-// })
+const registerSchema = z.object({
+    username: z.string(),
+    password: z.string(),
+    email: z.string()
+})
 
 export const signin = async (req: Request, res: Response) => {
     try {
@@ -39,6 +39,8 @@ export const signin = async (req: Request, res: Response) => {
 export const signup = async (req: Request, res: Response) => {
     try {
         const { username, email, password } = req.body;
+
+        registerSchema.parse(req.body);
 
         const newUser: IUser = await user.create({
             username,

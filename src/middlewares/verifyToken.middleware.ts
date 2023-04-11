@@ -13,7 +13,7 @@ export const tokenValidation = (req: Request, res: Response, next: NextFunction)
     if (!token) return res.status(401).json({ status: 401, message: 'Error You are not authorized' });
 
     const payload = jwt.verify(token, process.env.TOKEN_SECRET || 'tokentest') as IPayload;
-    
+
     req.body.userId = payload._id;
 
     return next();
