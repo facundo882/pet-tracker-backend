@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const auth_controller_1 = require("../controller/auth.controller");
 const verifyToken_middleware_1 = require("../middlewares/verifyToken.middleware");
-const verifyData_middleware_1 = require("../middlewares/verifyData.middleware");
+const validator_middleware_1 = require("../middlewares/validator.middleware");
+const auth_schemas_1 = require("../schemas/auth.schemas");
 const router = express_1.default.Router();
 router
-    .post('/signin', verifyData_middleware_1.loginValidator, auth_controller_1.signin)
-    .post('/signup', verifyData_middleware_1.registerValidator, auth_controller_1.signup)
+    .post('/signin', (0, validator_middleware_1.schemaValidation)(auth_schemas_1.loginSchema), auth_controller_1.signin)
+    .post('/signup', (0, validator_middleware_1.schemaValidation)(auth_schemas_1.registerSchema), auth_controller_1.signup)
     .get('/profile', verifyToken_middleware_1.tokenValidation, auth_controller_1.profile);
 exports.default = router;

@@ -1,24 +1,10 @@
 import { Request, Response } from 'express';
 import user, { IUser } from '../models/auth.model';
 import jwt from 'jsonwebtoken';
-import { z } from 'zod';
-
-const loginSchema = z.object({
-    username: z.string(),
-    password: z.string()
-})
-
-const registerSchema = z.object({
-    username: z.string(),
-    password: z.string(),
-    email: z.string()
-})
 
 export const signin = async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
-
-        loginSchema.parse(req.body);
 
         const userFind = await user.findOne({ username: username });
 
@@ -32,15 +18,13 @@ export const signin = async (req: Request, res: Response) => {
 
         return res.header('auth-token', token).status(200).json({ status: 200, user: userFind });
     } catch (error) {
-        return res.json(error);
+        return res.status(500).json({ message: 'internal server error' });
     }
 }
 
 export const signup = async (req: Request, res: Response) => {
     try {
         const { username, email, password } = req.body;
-
-        registerSchema.parse(req.body);
 
         const newUser: IUser = await user.create({
             username,
@@ -56,7 +40,7 @@ export const signup = async (req: Request, res: Response) => {
 
         return res.header('auth-token', token).status(200).json({ status: 200, user: savedUser });
     } catch (error) {
-        return res.json(error);
+        return res.status(500).json({ message: 'internal server error' });
     }
 }
 

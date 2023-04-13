@@ -28,7 +28,7 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.header('auth-token', token).status(200).json({ status: 200, user: userFind });
     }
     catch (error) {
-        return res.json(error);
+        return res.status(500).json({ message: 'internal server error' });
     }
 });
 exports.signin = signin;
@@ -46,7 +46,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.header('auth-token', token).status(200).json({ status: 200, user: savedUser });
     }
     catch (error) {
-        return res.json(error);
+        return res.status(500).json({ message: 'internal server error' });
     }
 });
 exports.signup = signup;
