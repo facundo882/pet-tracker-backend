@@ -23,8 +23,4 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/post', postRoutes);
 
-app.get('/', (_req: Request, res: Response) => {
-    res.send("hola como estas get");
-})
-
 export default app;
