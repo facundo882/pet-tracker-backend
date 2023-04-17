@@ -10,4 +10,4 @@ router
     .post('/signup', schemaValidation(registerSchema), signup)
     .get('/profile', tokenValidation, profile)
 
-export default router;
+export default router; 
