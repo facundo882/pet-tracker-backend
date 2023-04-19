@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const username = "JuampaVLB";
-const password = "TlThRUmQWNVA785n";
+dotenv.config();
 
+const username = process.env.DB_USERNAME1;
+const password = process.env.DB_PASSWORD;
 
 const URI = `mongodb+srv://${username}:${password}@cluster0.ktoxf8e.mongodb.net/pet-tracker?retryWrites=true&w=majority`;
 
