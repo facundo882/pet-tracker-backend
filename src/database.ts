@@ -1,6 +1,12 @@
 import mongoose from 'mongoose';
 
-const URI = "mongodb://0.0.0.0:27017/pet-tracker"
+const username = "JuampaVLB";
+const password = "TlThRUmQWNVA785n";
+
+
+const URI = `mongodb+srv://${username}:${password}@cluster0.ktoxf8e.mongodb.net/pet-tracker?retryWrites=true&w=majority`;
+
+// Localhost: mongodb://0.0.0.0:27017/pet-tracker
 
 mongoose
     .connect(URI)

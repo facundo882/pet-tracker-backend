@@ -16,9 +16,6 @@ app.set('PORT', process.env.PORT || 4000);
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/api/v1/auth', auth_routes_1.default);
-app.use('/api/v1/user', user_routes_1.default);
+app.use('/api/v1/users', user_routes_1.default);
 app.use('/api/v1/post', post_routes_1.default);
-app.get('/', (_req, res) => {
-    res.send("hola como estas get");
-});
 exports.default = app;
